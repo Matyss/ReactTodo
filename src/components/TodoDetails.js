@@ -7,7 +7,7 @@ class TodoDetails extends Component {
     return (
       <div>
         <h3>Todo details:</h3>
-        <div>Title: </div>
+        <div>Title: {this.props.todo.term}</div>
       </div>
     );
   }
@@ -15,7 +15,7 @@ class TodoDetails extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectedTodo: state.selectedTodo
+    todo: state.todo
   };
 }
 

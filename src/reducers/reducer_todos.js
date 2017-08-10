@@ -1,4 +1,4 @@
-import { ADD_TODO } from '../actions/index';
+import { ADD_TODO, SELECT_TODO } from '../actions/index';
 
 
 export default function(state = [], action) {
@@ -6,6 +6,10 @@ export default function(state = [], action) {
 		case ADD_TODO:
 			return [ action.payload, ...state ];
 			break;
+
+		case SELECT_TODO:
+				return action.payload;
+				break;
 
 		default:
 			// do nothing
