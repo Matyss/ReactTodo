@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { bindActionCreators } from 'redux';
+import { selectTodo } from '../actions/index';
 
 import todoListStyle from '../style/todoListStyle.css';
 
@@ -11,9 +13,11 @@ class TodoList extends Component {
       return (
         <li
           className="list-group-item"
-          key={singleTodo.id}>
-          {`${id}: `}
-          {singleTodo.term}
+          key={singleTodo.id}
+          onClick={() => this.props.selectTodo(singleTodo)}
+          >
+            {`${id}: `}
+            {singleTodo.term}
         </li>
       );
     });
@@ -36,4 +40,8 @@ function mapStateToProps({ todo }) {
   return { todo };
 }
 
-export default connect(mapStateToProps)(TodoList)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectTodo }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
