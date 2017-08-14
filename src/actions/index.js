@@ -8,9 +8,9 @@ export function addTodo(todo) {
   }
 }
 
-export function selectTodo(singleTodo) {
+export function selectTodo(activeTodo) {
   return {
     type: SELECT_TODO,
-    payload: singleTodo
+    payload: activeTodo
   }
 }

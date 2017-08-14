@@ -8,16 +8,16 @@ import todoListStyle from '../style/todoListStyle.css';
 
 class TodoList extends Component {
   renderTodos() {
-    return this.props.todo.map((singleTodo) => {
-      let id = _.indexOf(this.props.todo, singleTodo) + 1;
+    return this.props.todos.map((todo) => {
+      let id = _.indexOf(this.props.todos, todo) + 1;
       return (
         <li
           className="list-group-item"
-          key={singleTodo.id}
-          onClick={() => this.props.selectTodo(singleTodo)}
+          key={todo.id}
+          onClick={() => this.props.selectTodo(todo)}
           >
             {`${id}: `}
-            {singleTodo.term}
+            {todo.term}
         </li>
       );
     });
@@ -36,8 +36,8 @@ class TodoList extends Component {
   }
 }
 
-function mapStateToProps({ todo }) {
-  return { todo };
+function mapStateToProps({ todos }) {
+  return { todos };
 }
 
 function mapDispatchToProps(dispatch) {

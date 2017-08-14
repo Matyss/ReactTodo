@@ -9,21 +9,26 @@ class AddTodo extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {term: '', id: null, isDone: null};
+    this.state = {term: '', id: null, isDone: null, date: null};
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onInputChange(e) {
-    this.setState({ term: e.target.value, id: Date.now(), isDone: false })
+    this.setState({
+      term: e.target.value,
+      id: Date.now(),
+      isDone: false,
+      date: new Date(Date.now()).toLocaleString()
+    })
   }
 
   onFormSubmit(e) {
     e.preventDefault();
-    
+
     this.props.addTodo(this.state);
-    this.setState({ term: '', id: null, isDone: null});
+    this.setState({ term: '', id: null, isDone: null, date: null});
 
   }
 
