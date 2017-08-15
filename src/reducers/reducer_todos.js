@@ -1,14 +1,18 @@
-import { ADD_TODO } from '../actions/index';
+import _ from 'lodash';
+import { ADD_TODO, TOGGLE_TODO, DELETE_TODO } from '../actions/index';
 
 
-export default function(state = [], action) {
+export default function(state = {}, action) {
 	switch (action.type) {
 		case ADD_TODO:
-			return [ action.payload, ...state ];
-			break;
-
+			return { ...state, [action.payload.id]: action.payload}
+		case TOGGLE_TODO:
+			let id = action.payload.id;
+			return { ...state, [id]: { ...state[id], isDone: !action.payload.isDone}}
+		case DELETE_TODO:
+			return _.omit(state, action.payload.id)
 		default:
-			// do nothing
+			return state
 	}
 	return state;
 }

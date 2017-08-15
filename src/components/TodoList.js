@@ -7,16 +7,21 @@ import { selectTodo } from '../actions/index';
 import todoListStyle from '../style/todoListStyle.css';
 
 class TodoList extends Component {
+
   renderTodos() {
-    return this.props.todos.map((todo) => {
-      let id = _.indexOf(this.props.todos, todo) + 1;
+    const todoDone = {
+      textDecoration: 'line-through',
+      color: 'green'
+    }
+
+    return _.map(this.props.todos, todo => {
       return (
         <li
           className="list-group-item"
           key={todo.id}
           onClick={() => this.props.selectTodo(todo)}
+          style={todo.isDone ? todoDone : null}
           >
-            {`${id}: `}
             {todo.term}
         </li>
       );
@@ -26,7 +31,7 @@ class TodoList extends Component {
   render() {
     return (
       <div className="list-container">
-        <h3>Your todos:</h3>
+        <h3>Your todos [{_.keys(this.props.todos).length}]:</h3>
         <hr />
         <ul className="list-group">
           {this.renderTodos()}
